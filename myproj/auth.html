@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <meta http-equiv="Permissions-Policy" content="interest-cohort=()" />
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous" />
+    <style>
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #333;
+        }
+
+        li {
+            float: left;
+        }
+
+        li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        li a:hover {
+            background-color: #111;
+        }
+    </style>
+</head>
+
+<body>
+    <ul>
+        <li><a class="active" href="auth.html">Home</a></li>
+        <li><a href="index.html">Students</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#about">About</a></li>
+    </ul>
+    <br>
+    Username <input id="user">
+    Password <input id="pwd">
+    <button onclick="login()">Login</button>
+    <button onclick="register_staff()">Register Staff</button>
+    <!-- <button onclick="register_student()">Register student</button> -->
+
+    <script>
+        const MY_SERVER = "http://127.0.0.1:8000";
+        const config = {};
+
+        const register_staff = async () => {
+            res = await axios.post(MY_SERVER + "/register/", {
+                "username": user.value,
+                "password": pwd.value,
+                "email": "wa@ga.com"
+            });
+            console.log(res.data)
+        }
+
+        const login = async () => {
+            try {
+                const res = await axios.post(MY_SERVER + "/login/", {
+                    username: user.value,
+                    password: pwd.value,
+                });
+                const accessToken = res.data.access;
+                const refreshToken = res.data.refresh;
+                config.headers = { Authorization: `Bearer ${accessToken}` };
+                console.log(`Access token: ${accessToken}`);
+                console.log(`Refresh token: ${refreshToken}`);
+                localStorage.setItem('access_token', accessToken);
+                localStorage.setItem('refresh_token', refreshToken);
+                window.location.href = "index.html";
+                loadData(); // or any other function that requires authentication
+            } catch (error) {
+                console.log(error);
+            }
+        };
+    </script>
+</body>
+
+</html>
