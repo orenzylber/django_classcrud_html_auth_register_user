@@ -10,4 +10,7 @@ urlpatterns = [
     path('students/',views.MyStudentsView.as_view()),
     path('login/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('register/', views.register),
+    # path('get_all_images', views.getImages),
+    # path('upload_image/',views.APIViews.as_view()),
 ]
+

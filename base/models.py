@@ -9,7 +9,7 @@ class Students(models.Model):
    sname = models.CharField(max_length=50,null=True,blank=True)
    age = models.IntegerField()
    email = models.EmailField(max_length = 50,null=True,blank=True)
-#    image = models.ImageField(upload_to='Posted_Images', blank=True, null=True,)
+   image = models.ImageField(upload_to='Posted_Images', blank=True, null=True,)
    
    def __str__(self):
           return self.sname
