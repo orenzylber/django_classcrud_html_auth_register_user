@@ -1,6 +1,6 @@
 # Django REST API Project
 This is a simple Django REST API project that allows you to manage a list of students. It uses Django for backend, Class-based views for CRUD operations, and Axios for making API requests. Users can register, login, and see only the students they added to the list. Token is used for Authentication.
-
+Also, it enables images uploading.
 ## Features
 Django-based backend
 CRUD operations using class-based views
