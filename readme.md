@@ -87,3 +87,10 @@ axios.put('http://127.0.0.1:8000/students/1/', formData)
 axios.delete('http://127.0.0.1:8000/students/1/')
   .then(response => console.log(response.data))
   .catch(error => console.log(error));
+
+# netlify (site):
+https://visionary-figolla-deb19e.netlify.app/
+
+# render (back):
+https://django-classcrud-login-register-user-html.onrender.com/
+
